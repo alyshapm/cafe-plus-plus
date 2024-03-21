@@ -1,2 +1,4 @@
-# cafe plus plus
- Café++ implementing design patterns.
+# Café++
+
+Assignment 2 for Professional Software Development.
+Café++ implementing design patterns.
