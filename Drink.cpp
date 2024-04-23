@@ -13,5 +13,4 @@ class Drink {
     public:
         void createDrink();
         int takeOrder();
-        bool deactivateSession();
 };

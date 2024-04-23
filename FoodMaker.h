@@ -1,11 +1,13 @@
 #ifndef FOODMAKER_H
 #define FOODMAKER_H
 
-#include "Order.h"
+#include "Maker.h"
+#include "Food.h"
+#include <iostream>
 
-class FoodMaker {
+class FoodMaker : public Maker {
 public:
-    void prepareFood(const std::shared_ptr<Order>& order);
+    void processItem(const std::shared_ptr<Order>& order) override;
 };
 
 #endif

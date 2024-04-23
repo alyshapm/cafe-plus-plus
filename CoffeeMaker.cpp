@@ -4,7 +4,7 @@
 #include <chrono>
 #include <thread>
 
-void CoffeeMaker::prepareCoffee(const std::shared_ptr<Order>& order) {
+void CoffeeMaker::processItem(const std::shared_ptr<Order>& order) {
     for (auto& item : order->getItems()) {
         if (dynamic_cast<Coffee*>(item.get())) {
             std::cout << "Brewing coffee: " << item->getDescription() << std::endl;

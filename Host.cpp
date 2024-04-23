@@ -47,7 +47,7 @@ void Host::displayMenu() {
     std::cout << "\nWelcome to Café++! Here is our menu:\n";
     std::cout << "1: Black Coffee\n";
     std::cout << "2: White Coffee\n";
-    std::cout << "3: Cake\n";
+    std::cout << "3: Snacks\n";
     std::cout << "Please enter the number of the item you wish to order, or 0 to finish your order.\n";
 }
 
@@ -65,6 +65,7 @@ void Host::takeOrder(const std::string& patronName) {
 
     bool ordering = true;
     int sugar; // later extd to size, other characteristics
+    std::string foodChoice;
 
     while (ordering) {
         int choice;
@@ -83,7 +84,9 @@ void Host::takeOrder(const std::string& patronName) {
                 order->addItem(std::make_shared<WhiteCoffee>(sugar));
                 break;
             case 3:
-                order->addItem(std::make_shared<Food>("Cake"));
+                std::cout << "Enter type of snack (e.g., chips): ";
+                std::cin >> foodChoice;
+                order->addItem(std::make_shared<Snack>(foodChoice));
                 break;
             case 0:
                 ordering = false;

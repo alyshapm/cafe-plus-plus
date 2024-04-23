@@ -4,6 +4,7 @@
 #include "Order.h"
 #include "BlackCoffee.h"
 #include "WhiteCoffee.h"
+#include "Snack.h"
 #include "Patron.h"
 
 #include <iostream>

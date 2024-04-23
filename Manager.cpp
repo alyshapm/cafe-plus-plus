@@ -13,8 +13,8 @@ void Manager::processOrder(const std::string& patronName, const std::shared_ptr<
     std::string orderDetails;
 
     // Send the order to the food maker and coffee maker
-    foodMaker.prepareFood(order);
-    coffeeMaker.prepareCoffee(order);
+    foodMaker.processItem(order);
+    coffeeMaker.processItem(order);
     
     for (auto& item : order->getItems()) {
         orderDetails += item->getDescription() + ", ";

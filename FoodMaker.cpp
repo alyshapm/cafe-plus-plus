@@ -16,7 +16,7 @@
 #include <chrono>
 #include <thread>
 
-void FoodMaker::prepareFood(const std::shared_ptr<Order>& order) {
+void FoodMaker::processItem(const std::shared_ptr<Order>& order) {
     for (auto& item : order->getItems()) {
         if (dynamic_cast<Food*>(item.get())) {
             std::cout << "Preparing food: " << item->getDescription() << std::endl;
