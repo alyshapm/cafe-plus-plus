@@ -1,7 +1,6 @@
 {
   "files.associations": {
     "iostream": "cpp",
-    "vector": "cpp",
     "array": "cpp",
     "atomic": "cpp",
     "bit": "cpp",
@@ -20,6 +19,7 @@
     "deque": "cpp",
     "string": "cpp",
     "unordered_map": "cpp",
+    "vector": "cpp",
     "exception": "cpp",
     "algorithm": "cpp",
     "functional": "cpp",
@@ -43,6 +43,18 @@
     "ostream": "cpp",
     "stdexcept": "cpp",
     "streambuf": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "charconv": "cpp",
+    "chrono": "cpp",
+    "ctime": "cpp",
+    "ratio": "cpp",
+    "format": "cpp",
+    "iomanip": "cpp",
+    "semaphore": "cpp",
+    "span": "cpp",
+    "sstream": "cpp",
+    "stop_token": "cpp",
+    "thread": "cpp",
+    "variant": "cpp"
   }
 }
