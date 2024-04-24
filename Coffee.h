@@ -5,10 +5,10 @@
 
 class Coffee : public Drink {
 protected:
-    std::string type;
+    std::string coffeeType;
     int sugar;
 public:
-    Coffee(const std::string& type, int sugar);
+    Coffee(const std::string& coffeeType, int sugar);
     virtual std::string getDescription() const override;
 };
 

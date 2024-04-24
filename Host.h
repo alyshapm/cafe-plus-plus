@@ -21,6 +21,7 @@ public:
     void notifyCompletion(const std::string& orderDetails, const std::string& patronName, const std::string& patronID);
     void displayOrderHistory(std::shared_ptr<Patron> patron);
     void displayMenu();
+    void displaySnacks();
 };
 
 #endif

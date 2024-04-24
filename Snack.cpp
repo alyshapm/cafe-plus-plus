@@ -1,11 +1,29 @@
 #include "Snack.h"
 
-// Implementing the constructor
-Snack::Snack(const std::string& desc) : Food(desc) {}
+Snack::Snack(const std::string& desc, SnackType type) : Food(desc), snackType(type) {}
 
-// Optionally override the getDescription method
 std::string Snack::getDescription() const {
-    // Call the base class getDescription to get the basic description
     std::string baseDescription = Food::getDescription();
-    return baseDescription + " (snack)"; // Append "(snack)" to distinguish it
+
+    std::string snackTypeString;
+    switch (snackType) {
+        case SnackType::Chips:
+            snackTypeString = "Chips";
+            break;
+        case SnackType::Cookies:
+            snackTypeString = "Cookies";
+            break;
+        case SnackType::Chocolates:
+            snackTypeString = "Chocolates";
+            break;
+        default:
+            snackTypeString = "N/A";
+            break;
+    }
+
+    return baseDescription + " (Snack)";
+}
+
+SnackType Snack::getSnackType() const {
+    return snackType;
 }

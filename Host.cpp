@@ -2,7 +2,7 @@
 #include "Manager.h"
 #include "Coffee.h"
 #include "Food.h"
-#include "Util.h"
+#include "Snack.h"
 
 #include <iostream>
 #include <sstream>
@@ -56,6 +56,14 @@ void Host::displayMenu() {
     std::cout << "Please enter the number of the item you wish to order, or 0 to finish your order.\n";
 }
 
+void Host::displaySnacks() {
+    std::cout << "Snack Options:\n";
+    std::cout << "1: Chips\n";
+    std::cout << "2: Cookies\n";
+    std::cout << "3: Chocolates\n";
+    std::cout << "Enter the number of your choice: ";
+}
+
 void Host::takeOrder(std::shared_ptr<Patron> patron) {
 
     displayMenu();
@@ -65,7 +73,7 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
 
     bool ordering = true;
     int sugar; // later extd to size, other characteristics
-    std::string foodChoice;
+    int snackChoice;
 
     while (ordering) {
         int choice;
@@ -84,9 +92,22 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 order->addItem(std::make_shared<WhiteCoffee>(sugar));
                 break;
             case 3:
-                std::cout << "Enter type of snack (e.g., chips): ";
-                std::cin >> foodChoice;
-                order->addItem(std::make_shared<Snack>(foodChoice));
+                displaySnacks();
+                std::cin >> snackChoice;
+                switch (snackChoice) {
+                    case 1:
+                        order->addItem(std::make_shared<Snack>("Chips", SnackType::Chips));
+                        break;
+                    case 2:
+                        order->addItem(std::make_shared<Snack>("Cookies", SnackType::Cookies));
+                        break;
+                    case 3:
+                        order->addItem(std::make_shared<Snack>("Sandwiches", SnackType::Chocolates));
+                        break;
+                    default:
+                        std::cout << "Invalid snack choice. Please try again." << std::endl;
+                        continue;
+                }
                 break;
             case 0:
                 ordering = false;
@@ -159,10 +180,6 @@ void Host::notifyCompletion(const std::string& orderDetails,const std::string& p
         std::cout << "| " << std::setw(padLength) << std::left << line << " |" << std::endl;
     }
     std::cout << topBottomBorder << std::endl;
-
-    // Update order history in file
-     std::string orderHistory = patronName + " " + patronID + " " + orderDetails;
-     Util::writeToFile("order_history.txt", orderHistory);
 }
 
 // void Host::notifyCompletion(const std::string& orderDetails) {

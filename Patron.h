@@ -10,18 +10,18 @@
 #include "Order.h"
 
 class Patron {
-    std::string name;
-    std::string id;
+    std::string patronName;
+    std::string patronID;
     std::vector<Order> orderHistory;
 
 public:
-    Patron(const std::string& name) : name(name) {
-        id = generateID();
+    Patron(const std::string& patronName) : patronName(patronName) {
+        patronID = generateID();
     }
 
     void placeOrder(const Order& order);
-    std::string getName() const { return name; }
-    std::string getID() const { return id; }
+    std::string getName() const { return patronName; }
+    std::string getID() const { return patronID; }
     const std::vector<Order>& getOrderHistory() const { return orderHistory; }
 
 private:
