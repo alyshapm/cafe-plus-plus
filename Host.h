@@ -17,9 +17,9 @@ class Host {
 public:
     Host(std::shared_ptr<Manager> mgr);
     void start();
-    void takeOrder(const std::string& patronName);
-    void notifyCompletion(const std::string& orderDetails);
-    void displayOrderHistory(const std::string& patronName);
+    void takeOrder(std::shared_ptr<Patron> patron);
+    void notifyCompletion(const std::string& orderDetails, const std::string& patronName, const std::string& patronID);
+    void displayOrderHistory(std::shared_ptr<Patron> patron);
     void displayMenu();
 };
 

@@ -17,6 +17,10 @@ void Host::start() {
     std::string name;
     std::cin >> name;
 
+    // Create a new patron
+    auto patron = std::make_shared<Patron>(name);
+    manager->addPatron(patron);
+
     int choice = 0;
     do {
         std::cout << "\nChoose option:\n";
@@ -28,10 +32,10 @@ void Host::start() {
 
         switch (choice) {
             case 1:
-                takeOrder(name);
+                takeOrder(patron);
                 break;
             case 2:
-                displayOrderHistory(name);
+                displayOrderHistory(patron);
                 break;
             case 3:
                 std::cout << "\nGoodbye, see you soon!" << std::endl;
@@ -51,12 +55,7 @@ void Host::displayMenu() {
     std::cout << "Please enter the number of the item you wish to order, or 0 to finish your order.\n";
 }
 
-void Host::takeOrder(const std::string& patronName) {
-    auto patron = manager->getPatron(patronName);
-    if (!patron) {
-        patron = std::make_shared<Patron>(patronName);
-        manager->addPatron(patron);
-    }
+void Host::takeOrder(std::shared_ptr<Patron> patron) {
 
     displayMenu();
 
@@ -99,24 +98,18 @@ void Host::takeOrder(const std::string& patronName) {
     }
 
     if (!order->getItems().empty()) {
-        manager->processOrder(patronName, order);
+        manager->processOrder(patron->getName(), order);
     } else {
         std::cout << "No items ordered." << std::endl;
     }
 }
 
-void Host::displayOrderHistory(const std::string& patronName) {
-    auto patron = manager->getPatron(patronName);
-    if (!patron) {
-        std::cout << "No such patron found." << std::endl;
-        return;
-    }
-
+void Host::displayOrderHistory(std::shared_ptr<Patron> patron) {
     const auto& history = patron->getOrderHistory();
     if (history.empty()) {
-        std::cout << "No orders found for " << patronName << "." << std::endl;
+        std::cout << "No orders found for " << patron->getName() << " (ID: " << patron->getID() << ")." << std::endl;
     } else {
-        std::cout << "Order history for " << patronName << ":" << std::endl;
+        std::cout << "Order history for " << patron->getName() << " (ID: " << patron->getID() << "):" << std::endl;
         for (const auto& order : history) {
             for (const auto& item : order.getItems()) {
                 std::cout << item->getDescription() << "; ";
@@ -126,7 +119,9 @@ void Host::displayOrderHistory(const std::string& patronName) {
     }
 }
 
-void Host::notifyCompletion(const std::string& orderDetails) {
+void Host::notifyCompletion(const std::string& orderDetails,const std::string& patronName, const std::string& patronID) {
+    std::cout << "Patron Name: " << patronName << " (ID: " << patronID << ")" << std::endl;
+
     std::stringstream ss(orderDetails);
     std::string item;
     std::string header = "Order Complete! Receipt:";

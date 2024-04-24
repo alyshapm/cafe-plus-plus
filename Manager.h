@@ -22,6 +22,7 @@ public:
 
     void addPatron(const std::shared_ptr<Patron>& patron);
     std::shared_ptr<Patron> getPatron(const std::string& name);
+    std::pair<std::string, std::string> getPatronNameAndID(const std::shared_ptr<Order>& order);
 };
 
 #endif

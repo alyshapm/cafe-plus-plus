@@ -28,7 +28,8 @@ void Manager::processOrder(const std::string& patronName, const std::shared_ptr<
 
     // Notify the host when the entire order is prepared
     if (host) {
-        host->notifyCompletion(orderDetails);
+        auto [patronName, patronID] = getPatronNameAndID(order);
+        host->notifyCompletion(orderDetails, patronName, patronID);
     }
 
     // Retrieve the linked patron and place the order in their history
@@ -51,6 +52,13 @@ std::shared_ptr<Patron> Manager::getPatron(const std::string& name) {
     return nullptr; // Return nullptr if no patron found
 }
 
+std::pair<std::string, std::string> Manager::getPatronNameAndID(const std::shared_ptr<Order>& order) {
+    auto patron = order->getPatron();
+    if (patron) {
+        return {patron->getName(), patron->getID()};
+    }
+    return {"", ""}; // Return empty strings if patron is not found
+}
 
 
 // // Manager.cpp
