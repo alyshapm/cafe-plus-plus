@@ -102,7 +102,7 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                         order->addItem(std::make_shared<Snack>("Cookies", SnackType::Cookies));
                         break;
                     case 3:
-                        order->addItem(std::make_shared<Snack>("Sandwiches", SnackType::Chocolates));
+                        order->addItem(std::make_shared<Snack>("Chocolates", SnackType::Chocolates));
                         break;
                     default:
                         std::cout << "Invalid snack choice. Please try again." << std::endl;
