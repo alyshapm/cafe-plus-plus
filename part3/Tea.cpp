@@ -1,14 +1,14 @@
 #include "Tea.h"
 
 Tea::Tea(const std::string& desc, TeaType type, TeaBrew brew)
-    : Drink(desc), type(type), brew(brew) {}
+    : Drink(desc), teaType(type), teaBrew(brew) {}
 
 std::string Tea::getDescription() const {
     std::string baseDescription = Drink::getDescription();
 
-    std::string typeString = (type == TeaType::Hot) ? "Hot" : "Iced";
+    std::string typeString = (teaType == TeaType::Hot) ? "Hot" : "Iced";
     std::string brewString;
-    switch (brew) {
+    switch (teaBrew) {
         case TeaBrew::Black:
             brewString = "Black Tea";
             break;
@@ -33,9 +33,9 @@ std::string Tea::getDescription() const {
 }
 
 TeaType Tea::getType() const {
-    return type;
+    return teaType;
 }
 
 TeaBrew Tea::getBrew() const {
-    return brew;
+    return teaBrew;
 }

@@ -218,19 +218,19 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 std::cout << "Customize your sandwich:\n";
                 displayVegetables();
                 std::cin >> sandwichChoice;
-                Vegetables vegChoice;
+                VegetableChoice vegChoice;
                 switch (sandwichChoice) {
                     case 1:
-                        vegChoice = Vegetables::Lettuce;
+                        vegChoice = VegetableChoice::Lettuce;
                         break;
                     case 2:
-                        vegChoice = Vegetables::Tomato;
+                        vegChoice = VegetableChoice::Tomato;
                         break;
                     case 3:
-                        vegChoice = Vegetables::Onion;
+                        vegChoice = VegetableChoice::Onion;
                         break;
                     case 4:
-                        vegChoice = Vegetables::Cucumber;
+                        vegChoice = VegetableChoice::Cucumber;
                         break;
                     default:
                         std::cout << "Invalid vegetable choice. Please try again." << std::endl;
@@ -239,19 +239,19 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
 
                 displayProtein();
                 std::cin >> sandwichChoice;
-                Protein proteinChoice;
+                ProteinChoice proteinChoice;
                 switch (sandwichChoice) {
                     case 1:
-                        proteinChoice = Protein::Turkey;
+                        proteinChoice = ProteinChoice::Turkey;
                         break;
                     case 2:
-                        proteinChoice = Protein::Chicken;
+                        proteinChoice = ProteinChoice::Chicken;
                         break;
                     case 3:
-                        proteinChoice = Protein::Ham;
+                        proteinChoice = ProteinChoice::Ham;
                         break;
                     case 4:
-                        proteinChoice = Protein::Tofu;
+                        proteinChoice = ProteinChoice::Tofu;
                         break;
                     default:
                         std::cout << "Invalid protein choice. Please try again." << std::endl;
@@ -260,19 +260,19 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
 
                 displaySauce();
                 std::cin >> sandwichChoice;
-                Sauce sauceChoice;
+                SauceChoice sauceChoice;
                 switch (sandwichChoice) {
                     case 1:
-                        sauceChoice = Sauce::Mayonnaise;
+                        sauceChoice = SauceChoice::Mayonnaise;
                         break;
                     case 2:
-                        sauceChoice = Sauce::Mustard;
+                        sauceChoice = SauceChoice::Mustard;
                         break;
                     case 3:
-                        sauceChoice = Sauce::Ketchup;
+                        sauceChoice = SauceChoice::Ketchup;
                         break;
                     case 4:
-                        sauceChoice = Sauce::Ranch;
+                        sauceChoice = SauceChoice::Ranch;
                         break;
                     default:
                         std::cout << "Invalid sauce choice. Please try again." << std::endl;

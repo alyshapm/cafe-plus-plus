@@ -3,21 +3,21 @@
 
 #include "Food.h"
 
-enum class Vegetables {
+enum class VegetableChoice {
     Lettuce,
     Tomato,
     Onion,
     Cucumber
 };
 
-enum class Protein {
+enum class ProteinChoice {
     Turkey,
     Ham,
     Chicken,
     Tofu
 };
 
-enum class Sauce {
+enum class SauceChoice {
     Mayonnaise,
     Mustard,
     Ketchup,
@@ -26,19 +26,19 @@ enum class Sauce {
 
 class Sandwich : public Food {
 private:
-    Vegetables vegetableChoice;
-    Protein proteinChoice;
-    Sauce sauceChoice;
+    VegetableChoice vegetableChoice;
+    ProteinChoice proteinChoice;
+    SauceChoice sauceChoice;
 
 public:
     // Constructor that specifies a default description
-    Sandwich(const std::string& desc, Vegetables veg, Protein protein, Sauce sauce);
+    Sandwich(const std::string& desc, VegetableChoice veg, ProteinChoice protein, SauceChoice sauce);
 
     std::string getDescription() const override;
     
-    Vegetables getVegetable() const;
-    Protein getProtein() const;
-    Sauce getSauce() const;
+    VegetableChoice getVegetable() const;
+    ProteinChoice getProtein() const;
+    SauceChoice getSauce() const;
 };
 
 #endif

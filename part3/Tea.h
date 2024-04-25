@@ -18,11 +18,11 @@ enum class TeaBrew {
 
 class Tea : public Drink {
 private:
-    TeaType type;
-    TeaBrew brew;
+    TeaType teaType;
+    TeaBrew teaBrew;
 
 public:
-    Tea(const std::string& desc, TeaType type, TeaBrew brew);
+    Tea(const std::string& desc, TeaType teaType, TeaBrew teaBrew);
     std::string getDescription() const override;
     TeaType getType() const;
     TeaBrew getBrew() const;

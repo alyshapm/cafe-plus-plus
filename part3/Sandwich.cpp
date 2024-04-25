@@ -1,6 +1,6 @@
 #include "Sandwich.h"
 
-Sandwich::Sandwich(const std::string& desc, Vegetables veg, Protein protein, Sauce sauce)
+Sandwich::Sandwich(const std::string& desc, VegetableChoice veg, ProteinChoice protein, SauceChoice sauce)
     : Food(desc), vegetableChoice(veg), proteinChoice(protein), sauceChoice(sauce) {}
 
 std::string Sandwich::getDescription() const {
@@ -9,16 +9,16 @@ std::string Sandwich::getDescription() const {
     std::string vegString, proteinString, sauceString;
 
     switch (vegetableChoice) {
-        case Vegetables::Lettuce:
+        case VegetableChoice::Lettuce:
             vegString = "Lettuce";
             break;
-        case Vegetables::Tomato:
+        case VegetableChoice::Tomato:
             vegString = "Tomato";
             break;
-        case Vegetables::Onion:
+        case VegetableChoice::Onion:
             vegString = "Onion";
             break;
-        case Vegetables::Cucumber:
+        case VegetableChoice::Cucumber:
             vegString = "Cucumber";
             break;
         default:
@@ -27,16 +27,16 @@ std::string Sandwich::getDescription() const {
     }
 
     switch (proteinChoice) {
-        case Protein::Turkey:
+        case ProteinChoice::Turkey:
             proteinString = "Turkey";
             break;
-        case Protein::Ham:
+        case ProteinChoice::Ham:
             proteinString = "Ham";
             break;
-        case Protein::Chicken:
+        case ProteinChoice::Chicken:
             proteinString = "Chicken";
             break;
-        case Protein::Tofu:
+        case ProteinChoice::Tofu:
             proteinString = "Tofu";
             break;
         default:
@@ -45,16 +45,16 @@ std::string Sandwich::getDescription() const {
     }
 
     switch (sauceChoice) {
-        case Sauce::Mayonnaise:
+        case SauceChoice::Mayonnaise:
             sauceString = "Mayonnaise";
             break;
-        case Sauce::Mustard:
+        case SauceChoice::Mustard:
             sauceString = "Mustard";
             break;
-        case Sauce::Ketchup:
+        case SauceChoice::Ketchup:
             sauceString = "Ketchup";
             break;
-        case Sauce::Ranch:
+        case SauceChoice::Ranch:
             sauceString = "Ranch";
             break;
         default:
@@ -65,14 +65,14 @@ std::string Sandwich::getDescription() const {
     return baseDescription + " (Sandwich with " + vegString + " + " + proteinString + " + " + sauceString + ")";
 }
 
-Vegetables Sandwich::getVegetable() const {
+VegetableChoice Sandwich::getVegetable() const {
     return vegetableChoice;
 }
 
-Protein Sandwich::getProtein() const {
+ProteinChoice Sandwich::getProtein() const {
     return proteinChoice;
 }
 
-Sauce Sandwich::getSauce() const {
+SauceChoice Sandwich::getSauce() const {
     return sauceChoice;
 }
