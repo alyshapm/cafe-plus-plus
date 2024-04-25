@@ -51,69 +51,75 @@ void Host::start() {
 }
 
 void Host::displayMenu() {
+    std::cout <<
+    " _ __ ___   ___ _ __  _   _\n" 
+    "| '_ ` _ \\ / _ \\ '_ \\| | | |\n"
+    "| | | | | |  __/ | | | |_| |\n"
+    "|_| |_| |_|\\___|_| |_|\\__,_|\n\n";
+
     std::cout << "1: Black Coffee\n";
     std::cout << "2: White Coffee\n";
     std::cout << "3: Tea\n";
     std::cout << "4: Snacks\n";
-    std::cout << "5: Sandwiches\n";
+    std::cout << "5: Sandwiches\n\n";
     std::cout << "Please enter the number of the item you wish to order, or 0 to finish your order.\n";
 }
 
 void Host::displaySnacks() {
-    std::cout << "Snack Options:\n";
+    std::cout << "Snack Options:\n\n";
     std::cout << "1: Chips\n";
     std::cout << "2: Cookies\n";
-    std::cout << "3: Chocolates\n";
+    std::cout << "3: Chocolates\n\n";
     std::cout << "Enter the number of your choice: ";
 }
 
 void Host::displayVegetables() {
-    std::cout << "Choose your vegetable:\n";
+    std::cout << "Choose your vegetable:\n\n";
     std::cout << "1: Lettuce\n";
     std::cout << "2: Tomato\n";
     std::cout << "3: Onion\n";
-    std::cout << "4: Cucumber\n";
+    std::cout << "4: Cucumber\n\n";
     std::cout << "Select a vegetable (1-4): ";
 }
 
 void Host::displayProtein() {
-    std::cout << "Choose your protein:\n";
+    std::cout << "Choose your protein:\n\n";
     std::cout << "1: Turkey\n";
     std::cout << "2: Chicken\n";
     std::cout << "3: Ham\n";
-    std::cout << "4: Tofu\n";
+    std::cout << "4: Tofu\n\n";
     std::cout << "Select a protein (1-4): ";
 }
 
 void Host::displaySauce() {
-    std::cout << "Choose your sauce:\n";
+    std::cout << "Choose your sauce:\n\n";
     std::cout << "1: Mayonnaise\n";
     std::cout << "2: Mustard\n";
     std::cout << "3: Ketchup\n";
-    std::cout << "4: Ranch\n";
+    std::cout << "4: Ranch\n\n";
     std::cout << "Select a sauce (1-4): ";
 }
 
 void Host::displayType() {
-    std::cout << "Choose your tea type:\n";
+    std::cout << "Choose your tea type:\n\n";
     std::cout << "1: Hot\n";
-    std::cout << "2: Iced\n";
+    std::cout << "2: Iced\n\n";
     std::cout << "Select your type (1-2): ";
 }
 
 void Host::displayBrew() {
-    std::cout << "Choose your tea brew:\n";
+    std::cout << "Choose your tea brew:\n\n";
     std::cout << "1: Black\n";
     std::cout << "2: Earl Grey\n";
     std::cout << "3: Osmanthus\n";
     std::cout << "4: Green\n";
-    std::cout << "5: Jasmine\n";
+    std::cout << "5: Jasmine\n\n";
     std::cout << "Select your type (1-5): ";
 }
 
 void Host::takeOrder(std::shared_ptr<Patron> patron) {
 
-    std::cout << "\nWelcome to Café++! Here is our menu:\n";
+    std::cout << "\nWelcome to Cafe++! Here is our menu:\n";
 
     std::shared_ptr<Order> order = std::make_shared<Order>();
     order->setPatron(patron); 
@@ -137,11 +143,13 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 std::cout << "Enter sugar amount: ";
                 std::cin >> sugar;
                 order->addItem(std::make_shared<BlackCoffee>(sugar));
+                std::cout << "Added Black Coffee with " << sugar << " blocks of sugar.\n";
                 break;
             case 2:
                 std::cout << "Enter sugar amount: ";
                 std::cin >> sugar;
                 order->addItem(std::make_shared<WhiteCoffee>(sugar));
+                std::cout << "Added White Coffee with " << sugar << " blocks of sugar.\n";
                 break;
             case 3:
                 displayType();
@@ -183,6 +191,7 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                         continue;
                 }
                 order->addItem(std::make_shared<Tea>(teaDescription, teaType, brewChoice));
+                std::cout << "Added Custom Tea.\n";
                 break;
             case 4:
                 displaySnacks();
@@ -190,12 +199,15 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 switch (snackChoice) {
                     case 1:
                         order->addItem(std::make_shared<Snack>("Chips", SnackType::Chips));
+                        std::cout << "Added Chips. \n";
                         break;
                     case 2:
                         order->addItem(std::make_shared<Snack>("Cookies", SnackType::Cookies));
+                        std::cout << "Added Cookies. \n";
                         break;
                     case 3:
                         order->addItem(std::make_shared<Snack>("Chocolates", SnackType::Chocolates));
+                        std::cout << "Added Chocolates. \n";
                         break;
                     default:
                         std::cout << "Invalid snack choice. Please try again." << std::endl;
@@ -251,10 +263,10 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 Sauce sauceChoice;
                 switch (sandwichChoice) {
                     case 1:
-                        sauceChoice = Sauce::Mustard;
+                        sauceChoice = Sauce::Mayonnaise;
                         break;
                     case 2:
-                        sauceChoice = Sauce::Mayonnaise;
+                        sauceChoice = Sauce::Mustard;
                         break;
                     case 3:
                         sauceChoice = Sauce::Ketchup;
@@ -268,6 +280,7 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 }
             
                 order->addItem(std::make_shared<Sandwich>(sandwichDescription, vegChoice, proteinChoice, sauceChoice));
+                std::cout << "Added Custom Sandwich.\n";
                 break;
 
             case 0:
@@ -278,7 +291,9 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 displayMenu();
                 continue;
         }
-        std::cout << "Would you like to order something else?\n";
+        if (choice != 0){
+            std::cout << "\nWould you like to order something else?\n";
+        }
     }
 
     if (!order->getItems().empty()) {

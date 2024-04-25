@@ -49,23 +49,29 @@ void Host::start() {
 }
 
 void Host::displayMenu() {
+    std::cout <<
+    " _ __ ___   ___ _ __  _   _\n" 
+    "| '_ ` _ \\ / _ \\ '_ \\| | | |\n"
+    "| | | | | |  __/ | | | |_| |\n"
+    "|_| |_| |_|\\___|_| |_|\\__,_|\n\n";
+    
     std::cout << "1: Black Coffee\n";
     std::cout << "2: White Coffee\n";
-    std::cout << "3: Snacks\n";
+    std::cout << "3: Snacks\n\n";
     std::cout << "Please enter the number of the item you wish to order, or 0 to finish your order.\n";
 }
 
 void Host::displaySnacks() {
-    std::cout << "Snack Options:\n";
+    std::cout << "Snack Options:\n\n";
     std::cout << "1: Chips\n";
     std::cout << "2: Cookies\n";
-    std::cout << "3: Chocolates\n";
+    std::cout << "3: Chocolates\n\n";
     std::cout << "Enter the number of your choice: ";
 }
 
 void Host::takeOrder(std::shared_ptr<Patron> patron) {
 
-    std::cout << "\nWelcome to Café++! Here is our menu:\n";
+    std::cout << "\nWelcome to Cafe++! Here is our menu:\n";
 
     std::shared_ptr<Order> order = std::make_shared<Order>();
     order->setPatron(patron); 
@@ -85,11 +91,13 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 std::cout << "Enter sugar amount: ";
                 std::cin >> sugar;
                 order->addItem(std::make_shared<BlackCoffee>(sugar));
+                std::cout << "Added Black Coffee with " << sugar << " blocks of sugar.\n";
                 break;
             case 2:
                 std::cout << "Enter sugar amount: ";
                 std::cin >> sugar;
                 order->addItem(std::make_shared<WhiteCoffee>(sugar));
+                std::cout << "Added White Coffee with " << sugar << " blocks of sugar.\n";
                 break;
             case 3:
                 displaySnacks();
@@ -97,12 +105,15 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 switch (snackChoice) {
                     case 1:
                         order->addItem(std::make_shared<Snack>("Chips", SnackType::Chips));
+                        std::cout << "Added Chips. \n";
                         break;
                     case 2:
                         order->addItem(std::make_shared<Snack>("Cookies", SnackType::Cookies));
+                        std::cout << "Added Cookies. \n";
                         break;
                     case 3:
                         order->addItem(std::make_shared<Snack>("Chocolates", SnackType::Chocolates));
+                        std::cout << "Added Chocolates. \n";
                         break;
                     default:
                         std::cout << "Invalid snack choice. Please try again." << std::endl;
@@ -117,7 +128,9 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 displayMenu();
                 continue;
         }
-        std::cout << "Would you like to order something else?\n";
+        if (choice != 0){
+            std::cout << "\nWould you like to order something else?\n";
+        }
     }
 
     if (!order->getItems().empty()) {

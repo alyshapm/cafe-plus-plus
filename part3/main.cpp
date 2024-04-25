@@ -7,7 +7,7 @@ int main() {
     auto host = std::make_shared<Host>(manager);
     manager->setHost(host);
 
-    std::cout << "Starting Café++ System...\n";
+    std::cout << "Starting Cafe++ System...\n";
     std::cout <<
     "  ____       __   __             \n"
     " / ___|__ _ / _| /_/   _     _   \n"

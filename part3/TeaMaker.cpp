@@ -15,7 +15,7 @@ void TeaMaker::processItem(const std::shared_ptr<Order>& order) {
             "        _o_    ;:;'",
             "    ,-.'---`.__ ;",
             "   ((j`=====',-'",
-            "    `-\\    /",
+            "    `-\\     /",
             "       `---' ",
             };
 
