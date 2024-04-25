@@ -51,7 +51,6 @@ void Host::start() {
 }
 
 void Host::displayMenu() {
-    std::cout << "\nWelcome to Café++! Here is our menu:\n";
     std::cout << "1: Black Coffee\n";
     std::cout << "2: White Coffee\n";
     std::cout << "3: Tea\n";
@@ -114,7 +113,7 @@ void Host::displayBrew() {
 
 void Host::takeOrder(std::shared_ptr<Patron> patron) {
 
-    displayMenu();
+    std::cout << "\nWelcome to Café++! Here is our menu:\n";
 
     std::shared_ptr<Order> order = std::make_shared<Order>();
     order->setPatron(patron); 
@@ -128,6 +127,7 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
     std::string teaDescription = "Tea";
 
     while (ordering) {
+        displayMenu();
         int choice;
         std::cout << "Enter your choice: ";
         std::cin >> choice;
@@ -278,6 +278,7 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 displayMenu();
                 continue;
         }
+        std::cout << "Would you like to order something else?\n";
     }
 
     if (!order->getItems().empty()) {
