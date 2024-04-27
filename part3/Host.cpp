@@ -5,6 +5,7 @@
 #include "Snack.h"
 #include "Sandwich.h"
 #include "Tea.h"
+#include "Util.h"
 
 #include <iostream>
 #include <sstream>
@@ -357,6 +358,10 @@ void Host::notifyCompletion(const std::string& orderDetails,const std::string& p
         std::cout << "| " << std::setw(padLength) << std::left << line << " |" << std::endl;
     }
     std::cout << topBottomBorder << std::endl;
+
+    // Update order history in file
+     std::string orderHistory = patronName + " " + patronID + " " + orderDetails;
+     Util::writeToFile("order_history.txt", orderHistory);
 }
 
 // void Host::notifyCompletion(const std::string& orderDetails) {
