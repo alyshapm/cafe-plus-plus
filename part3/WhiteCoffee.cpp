@@ -37,3 +37,11 @@ std::string WhiteCoffee::getDescription() const {
     description += " and " + std::to_string(sugar) + " blocks of sugar.";
     return description;
 }
+
+CoffeeType WhiteCoffee::getType() const {
+    return coffeeType;
+}
+
+MilkType WhiteCoffee::getMilk() const {
+    return milkType;
+}

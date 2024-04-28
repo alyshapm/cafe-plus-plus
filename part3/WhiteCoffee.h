@@ -18,13 +18,15 @@ enum class MilkType {
 };
 
 class WhiteCoffee : public Coffee {
-public:
-    WhiteCoffee(CoffeeType coffee = CoffeeType::Regular, MilkType milk = MilkType::Regular, int sugar = 0);
-    std::string getDescription() const override;
-
 private:
     CoffeeType coffeeType;
     MilkType milkType;
+
+public:
+    WhiteCoffee(CoffeeType coffee = CoffeeType::Regular, MilkType milk = MilkType::Regular, int sugar = 0);
+    std::string getDescription() const override;
+    CoffeeType getType() const;
+    MilkType getMilk() const;
 };
 
 #endif
