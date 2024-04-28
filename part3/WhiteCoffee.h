@@ -3,12 +3,28 @@
 
 #include "Coffee.h"
 
+enum class CoffeeType {
+    Regular,
+    Latte,
+    Cappuccino,
+    FlatWhite
+};
+
+enum class MilkType {
+    Regular,
+    Almond,
+    Soy,
+    Oat
+};
+
 class WhiteCoffee : public Coffee {
 public:
-    WhiteCoffee(int sugar = 0) : Coffee("White", sugar) {} // Specifying type explicitly
-    std::string getDescription() const override {
-        return Coffee::getDescription(); // Optionally add more specific description details
-    }
+    WhiteCoffee(CoffeeType coffee = CoffeeType::Regular, MilkType milk = MilkType::Regular, int sugar = 0);
+    std::string getDescription() const override;
+
+private:
+    CoffeeType coffeeType;
+    MilkType milkType;
 };
 
 #endif

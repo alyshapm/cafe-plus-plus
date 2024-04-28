@@ -29,6 +29,8 @@ public:
     void displaySauce();
     void displayType();
     void displayBrew();
+    void displayMilk();
+    void displayCoffeeType();
 };
 
 #endif

@@ -6,6 +6,7 @@
 #include "Sandwich.h"
 #include "Tea.h"
 #include "Util.h"
+#include "WhiteCoffee.h"
 
 #include <iostream>
 #include <sstream>
@@ -118,6 +119,24 @@ void Host::displayBrew() {
     std::cout << "Select your type (1-5): ";
 }
 
+void Host::displayMilk() {
+    std::cout << "Choose your milk:\n\n";
+    std::cout << "1: Regular\n";
+    std::cout << "2: Almond\n";
+    std::cout << "3: Soy\n";
+    std::cout << "4: Oat\n";
+    std::cout << "Select your type (1-4): ";
+}
+
+void Host::displayCoffeeType() {
+    std::cout << "Choose your type:\n\n";
+    std::cout << "1: Regular\n";
+    std::cout << "2: Latte\n";
+    std::cout << "3: Cappuccino\n";
+    std::cout << "4: Flat White\n";
+    std::cout << "Select your type (1-4): ";
+}
+
 void Host::takeOrder(std::shared_ptr<Patron> patron) {
 
     std::cout << "\nWelcome to Cafe++! Here is our menu:\n";
@@ -130,8 +149,11 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
     int snackChoice;
     int teaChoice;
     int sandwichChoice;
+    int milkChoice;
+    int coffeeChoice;
     std::string sandwichDescription = "Custom Sandwich";
     std::string teaDescription = "Tea";
+    std::string coffeeDescription = "White Coffee";
 
     while (ordering) {
         displayMenu();
@@ -147,11 +169,53 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 std::cout << "Added Black Coffee with " << sugar << " blocks of sugar.\n";
                 break;
             case 2:
+                displayCoffeeType();
+                std::cin >> coffeeChoice;
+                CoffeeType coffeeType;
+                switch(coffeeChoice) {
+                    case 1:
+                        coffeeType = CoffeeType::Regular;
+                        break;
+                    case 2:
+                        coffeeType = CoffeeType::Latte;
+                        break;
+                    case 3:
+                        coffeeType = CoffeeType::Cappuccino;
+                        break;
+                    case 4:
+                        coffeeType = CoffeeType::FlatWhite;
+                        break;
+                    default:
+                        std::cout << "Invalid coffee type choice. Please try again." << std::endl;
+                        continue;
+                }
+
+                displayMilk();
+                std::cin >> coffeeChoice;
+                MilkType milkType;
+                switch(coffeeChoice) {
+                    case 1:
+                        milkType = MilkType::Regular;
+                        break;
+                    case 2:
+                        milkType = MilkType::Almond;
+                        break;
+                    case 3:
+                        milkType = MilkType::Soy;
+                        break;
+                    case 4:
+                        milkType = MilkType::Oat;
+                        break;
+                    default:
+                        std::cout << "Invalid milk type choice. Please try again." << std::endl;
+                        continue;
+                }
                 std::cout << "Enter sugar amount: ";
                 std::cin >> sugar;
-                order->addItem(std::make_shared<WhiteCoffee>(sugar));
-                std::cout << "Added White Coffee with " << sugar << " blocks of sugar.\n";
+                order->addItem(std::make_shared<WhiteCoffee>(coffeeType, milkType, sugar));
+                std::cout << "Added Custom Coffee.\n";
                 break;
+                
             case 3:
                 displayType();
                 std::cin >> teaChoice;
