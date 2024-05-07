@@ -255,7 +255,10 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                         std::cout << "Invalid tea brew choice. Please try again." << std::endl;
                         continue;
                 }
-                order->addItem(std::make_shared<Tea>(teaDescription, teaType, brewChoice));
+                std::cout << "Enter sugar amount: "; 
+                std::cin >> sugar;
+
+                order->addItem(std::make_shared<Tea>(teaDescription, teaType, brewChoice, sugar));
                 std::cout << "Added Custom Tea.\n";
                 break;
             case 4:
@@ -427,39 +430,3 @@ void Host::notifyCompletion(const std::string& orderDetails,const std::string& p
      std::string orderHistory = patronName + " " + patronID + " " + orderDetails;
      Util::writeToFile("order_history.txt", orderHistory);
 }
-
-// void Host::notifyCompletion(const std::string& orderDetails) {
-//     std::cout << "Order completed: " << orderDetails << std::endl;
-// }
-
-// #include "Host.h"
-// #include <iostream>
-
-// void Host::processOrder(const Order& order) {
-//     // add logic, it would be something like the following:
-//     // Order order;
-//     // std::string name, item;
-//     // std::cout << "Enter your name: ";
-//     // std::cin >> name;
-//     // std::cout << "What would you like to order? (Enter 'done' to finish): ";
-//     // while (std::cin >> item && item != "done") {
-//     //     order.addItem(item);
-//     // }
-//     // manager.processOrder(order);
-    
-//     std::cout << "Processing order ID: " << order.getOrderID() << std::endl; // placeholder
-// }
-
-// void Host::displayMenu(const Item& item) {
-//     std::cout << "Menu item: " << item.getItemName() << " - Price: " << item.getItemPrice() << std::endl;
-// }
-
-// void Host::displayOrderStatus(const Order& order) {
-//     // Logic to display the order status
-//     std::cout << "Order ID: " << order.getOrderID() << " - Status: " << order.getStatusAsString() << std::endl;
-// }
-
-// // to be updated in UML: call patron for completed order
-// // void Host::callPatron(std::string name) {
-// //     std::cout << name << ", your order is ready!" << std::endl;
-// // }

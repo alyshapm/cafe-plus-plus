@@ -20,12 +20,13 @@ class Tea : public Drink {
 private:
     TeaType teaType;
     TeaBrew teaBrew;
-
+    int sugar;
 public:
-    Tea(const std::string& desc, TeaType teaType, TeaBrew teaBrew);
+    Tea(const std::string& desc, TeaType teaType, TeaBrew teaBrew, int sugar);
     std::string getDescription() const override;
     TeaType getType() const;
     TeaBrew getBrew() const;
+    int getSugar() const;
 };
 
 #endif

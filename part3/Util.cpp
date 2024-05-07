@@ -1,6 +1,8 @@
 #include "Util.h"
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <string>
 
 namespace Util{
 
@@ -13,4 +15,5 @@ namespace Util{
             std::cerr << "Unable to open file: " << filename << std::endl;
         }
     }
+
 }

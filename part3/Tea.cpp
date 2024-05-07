@@ -1,7 +1,7 @@
 #include "Tea.h"
 
-Tea::Tea(const std::string& desc, TeaType type, TeaBrew brew)
-    : Drink(desc), teaType(type), teaBrew(brew) {}
+Tea::Tea(const std::string& desc, TeaType type, TeaBrew brew, int sugar)
+    : Drink(desc), teaType(type), teaBrew(brew), sugar(sugar) {} // Updated constructor
 
 std::string Tea::getDescription() const {
     std::string baseDescription = Drink::getDescription();
@@ -29,7 +29,7 @@ std::string Tea::getDescription() const {
             break;
     }
 
-    return baseDescription + " (" + typeString + " " + brewString + ")";
+    return baseDescription + " (" + typeString + " " + brewString + ") with " + std::to_string(sugar) + " sugar cubes"; // Include sugar cubes in description
 }
 
 TeaType Tea::getType() const {
@@ -38,4 +38,8 @@ TeaType Tea::getType() const {
 
 TeaBrew Tea::getBrew() const {
     return teaBrew;
+}
+
+int Tea::getSugar() const {
+    return sugar;
 }
