@@ -81,6 +81,7 @@ void Host::displayVegetables() {
     std::cout << "2: Tomato\n";
     std::cout << "3: Onion\n";
     std::cout << "4: Cucumber\n\n";
+    std::cout << "Enter 0 for none or to go to the next step.\n";
     std::cout << "Select a vegetable (1-4): ";
 }
 
@@ -90,6 +91,7 @@ void Host::displayProtein() {
     std::cout << "2: Chicken\n";
     std::cout << "3: Ham\n";
     std::cout << "4: Tofu\n\n";
+    std::cout << "Enter 0 for none or to go to the next step.\n";
     std::cout << "Select a protein (1-4): ";
 }
 
@@ -99,6 +101,7 @@ void Host::displaySauce() {
     std::cout << "2: Mustard\n";
     std::cout << "3: Ketchup\n";
     std::cout << "4: Ranch\n\n";
+    std::cout << "Press 0 for none or to go to the next step.\n";
     std::cout << "Select a sauce (1-4): ";
 }
 
@@ -151,6 +154,12 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
     int sandwichChoice;
     int milkChoice;
     int coffeeChoice;
+    std::vector<VegetableChoice> vegChoices;
+    std::vector<ProteinChoice> proteinChoices;
+    std::vector<SauceChoice> sauceChoices;
+    bool vegSelected = false;
+    bool proteinSelected = false;
+    bool sauceSelected = false;
     std::string sandwichDescription = "Custom Sandwich";
     std::string teaDescription = "Tea";
     std::string coffeeDescription = "White Coffee";
@@ -283,77 +292,66 @@ void Host::takeOrder(std::shared_ptr<Patron> patron) {
                 }
                 break;
             case 5:
-                std::cout << "Customize your sandwich:\n";
-                displayVegetables();
-                std::cin >> sandwichChoice;
-                VegetableChoice vegChoice;
-                switch (sandwichChoice) {
-                    case 1:
-                        vegChoice = VegetableChoice::Lettuce;
-                        break;
-                    case 2:
-                        vegChoice = VegetableChoice::Tomato;
-                        break;
-                    case 3:
-                        vegChoice = VegetableChoice::Onion;
-                        break;
-                    case 4:
-                        vegChoice = VegetableChoice::Cucumber;
-                        break;
-                    default:
+                std::cout << "Create a custom sandwich in three steps!\n";
+                std::cout << "Choose as many options for each step:\n";
+                std::cout << "(At least one option from one of the steps has to be chosen)\n";
+
+                // Clear previous choices
+                vegChoices.clear();
+                proteinChoices.clear();
+                sauceChoices.clear();
+
+                int vegChoice;
+                do {
+                    displayVegetables();
+                    std::cin >> vegChoice;
+                    if (vegChoice == 0) {
+                        break; // Exit loop if choice is 0
+                    } else if (vegChoice >= 1 && vegChoice <= 4) {
+                        vegChoices.push_back(static_cast<VegetableChoice>(vegChoice - 1));
+                    } else {
                         std::cout << "Invalid vegetable choice. Please try again." << std::endl;
-                        continue;
-                }
+                    }
+                } while (true); // Continue looping until choice is 0
 
-                displayProtein();
-                std::cin >> sandwichChoice;
-                ProteinChoice proteinChoice;
-                switch (sandwichChoice) {
-                    case 1:
-                        proteinChoice = ProteinChoice::Turkey;
-                        break;
-                    case 2:
-                        proteinChoice = ProteinChoice::Chicken;
-                        break;
-                    case 3:
-                        proteinChoice = ProteinChoice::Ham;
-                        break;
-                    case 4:
-                        proteinChoice = ProteinChoice::Tofu;
-                        break;
-                    default:
+                int proteinChoice;
+                do {
+                    displayProtein();
+                    std::cin >> proteinChoice;
+                    if (proteinChoice == 0) {
+                        break; // Exit loop if choice is 0
+                    } else if (proteinChoice >= 1 && proteinChoice <= 4) {
+                        proteinChoices.push_back(static_cast<ProteinChoice>(proteinChoice - 1));
+                    } else {
                         std::cout << "Invalid protein choice. Please try again." << std::endl;
-                        continue;
-                }
+                    }
+                } while (true); // Continue looping until choice is 0
 
-                displaySauce();
-                std::cin >> sandwichChoice;
-                SauceChoice sauceChoice;
-                switch (sandwichChoice) {
-                    case 1:
-                        sauceChoice = SauceChoice::Mayonnaise;
-                        break;
-                    case 2:
-                        sauceChoice = SauceChoice::Mustard;
-                        break;
-                    case 3:
-                        sauceChoice = SauceChoice::Ketchup;
-                        break;
-                    case 4:
-                        sauceChoice = SauceChoice::Ranch;
-                        break;
-                    default:
+                int sauceChoice;
+                do {
+                    displaySauce();
+                    std::cin >> sauceChoice;
+                    if (sauceChoice == 0) {
+                        break; // Exit loop if choice is 0
+                    } else if (sauceChoice >= 1 && sauceChoice <= 4) {
+                        sauceChoices.push_back(static_cast<SauceChoice>(sauceChoice - 1));
+                    } else {
                         std::cout << "Invalid sauce choice. Please try again." << std::endl;
-                        continue;
-                }
-            
-                order->addItem(std::make_shared<Sandwich>(sandwichDescription, vegChoice, proteinChoice, sauceChoice));
-                std::cout << "Added Custom Sandwich.\n";
-                break;
+                    }
+                } while (true); // Continue looping until choice is 0
 
+                // Add sandwich only if at least one ingredient is selected
+                if (!vegChoices.empty() || !proteinChoices.empty() || !sauceChoices.empty()) {
+                    order->addItem(std::make_shared<Sandwich>(sandwichDescription, vegChoices, proteinChoices, sauceChoices));
+                    std::cout << "Added Custom Sandwich.\n";
+                } else {
+                    std::cout << "No ingredients selected for sandwich." << std::endl;
+                }
+                break;
             case 0:
                 ordering = false;
                 break;
+
             default:
                 std::cout << "Invalid choice, please try again." << std::endl;
                 displayMenu();

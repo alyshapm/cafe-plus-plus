@@ -2,6 +2,7 @@
 #define SANDWICH_H
 
 #include "Food.h"
+#include <vector>
 
 enum class VegetableChoice {
     Lettuce,
@@ -26,19 +27,19 @@ enum class SauceChoice {
 
 class Sandwich : public Food {
 private:
-    VegetableChoice vegetableChoice;
-    ProteinChoice proteinChoice;
-    SauceChoice sauceChoice;
+    std::vector<VegetableChoice> vegetableChoices;
+    std::vector<ProteinChoice> proteinChoices;
+    std::vector<SauceChoice> sauceChoices;
 
 public:
-    // Constructor that specifies a default description
-    Sandwich(const std::string& desc, VegetableChoice veg, ProteinChoice protein, SauceChoice sauce);
+    Sandwich(const std::string& desc, const std::vector<VegetableChoice>& veggies,
+             const std::vector<ProteinChoice>& proteins, const std::vector<SauceChoice>& sauces);
 
     std::string getDescription() const override;
-    
-    VegetableChoice getVegetable() const;
-    ProteinChoice getProtein() const;
-    SauceChoice getSauce() const;
+
+    std::vector<VegetableChoice> getVegetables() const;
+    std::vector<ProteinChoice> getProteins() const;
+    std::vector<SauceChoice> getSauces() const;
 };
 
 #endif
